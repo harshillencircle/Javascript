@@ -48,3 +48,21 @@ console.log(numbers.toReversed());   // Output: [ 20, 50, 40, 80, 60, 10, 70, 30
 
 console.log("Minimum number:", Math.min(...numbers));
 console.log("Maximum number:", Math.max(...numbers));
+
+// concat array
+let array1 = [1, 2, 3];
+let array2 = [4, 5, 6];
+let array3 = [7, 8, 9];
+
+let arrconcat = array1.concat(array2, array3);
+
+console.log(arrconcat); // Output: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+
+const reduced = (a, b) => {
+    return a+b; // addition og array also you can add arithmetic operation
+}
+console.log(arrconcat.reduce(reduced)); // Output: 45
+
+// convert string to array
+const a = "Hello World !";
+console.log(Array.from(a)); // Output: ['H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd', ' ', '!']

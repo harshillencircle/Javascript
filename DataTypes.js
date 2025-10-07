@@ -47,11 +47,12 @@ console.log("bignum2:", bignum2, "type:", typeof bignum2);
 // 2] Non-Primitive Data Types in JavaScript
 
 const user = {'name': 'john', 'age': 5, 'email': 'john@gmail.com'};
+user.salary = "75cr"    // Add salary field in existing user data
 console.log("user :", user, "type:", typeof user);
 console.log("user name:", user.name , "type:", typeof user.name);
 console.log("user email:", user.age , "type:", typeof user.age);
 
-// user : { name: 'john', age: 5, email: 'john@gmail.com' } type: object
+// user : { name: 'john', age: 5, email: 'john@gmail.com', salary: '75cr' } type: object
 // user name: john type: string
 // user email: 5 type: number
 
