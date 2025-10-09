@@ -128,7 +128,7 @@ performTask(Taskstart, Taskend);
 
 
 // Create checkStock function that returns a promise. Resolve it with "Stock Available" if the quantity is above 0, and reject it with "Out of Stock" otherwise.
-function checkStock(quantity) {
+function checkStocks(quantity) {
     const promise = new Promise((resolve, reject) => {
         if (quantity > 0) {
             resolve("Stock Available");
@@ -143,42 +143,97 @@ function checkStock(quantity) {
         .catch((error) => console.log(error));
 }
 
-checkStock(1);
+checkStocks(4);  // Output: Stock available
 
 
 // Write an async function placeOrder that uses a promise to simulate checking stock and another promise to simulate processing the order. Use await to chain these operations.
 
+// function checkstock(quantity) {
+//     return new Promise((resolve, reject) => {
+//         if (quantity > 0) {
+//             resolve("Stock available");
+//         } else {
+//             reject("Stock unavailable");
+//         }
+//     });
+// }
 
-// Function to simulate checking stock
-function checkstock(quantity) {
+// function processOrder(quantity) {
+//     return new Promise((resolve) => {
+//         resolve("Order Processed!");
+//     });
+// }
+
+const checkStock = (quantity) => {
     return new Promise((resolve, reject) => {
         if (quantity > 0) {
-            resolve("Stock available");
-        } else {
-            reject("Stock unavailable");
+            resolve("Stock Available");
+        }
+        else {
+            reject("Stock Un-Available");
         }
     });
 }
 
-// Function to simulate processing the order
-function processOrder(quantity) {
-    return new Promise((resolve) => {
-        resolve("Order Processed!");
+const processOrder = (quantity) => {
+    return new Promise((resolve, reject) => {
+        if (quantity > 0) {
+            resolve("Order Processed!");
+        }
     });
 }
 
-// Async function to place the order
 async function placeOrder(quantity) {
     try {
-        const stock = await checkstock(quantity);
-        console.log(stock); // Logs "Stock available"
-
+        const stock = await checkStock(quantity);
+        console.log(stock);
         const process = await processOrder(quantity);
-        console.log(process); // Logs "Order Processed!"
+        console.log(process);
+
     } catch (error) {
-        console.error("Order Failed:", error); // Logs any errors
+        console.error("Order Failed !!", error);
+    }
+}
+placeOrder(1);  // Output: Stock Available  Order Processed!
+// placeOrder(0);  // Output: Order Failed !! Stock Un-Available
+
+
+// Write async function to fetch data from https://jsonplaceholder.typicode.com/users. Print each user's name and email.
+
+async function FatchData() {
+    try {
+        const FatchUsers = await fetch("https://jsonplaceholder.typicode.com/users");
+        const Users = await FatchUsers.json();
+
+        // using map() 
+        Users.map((user) => {
+            console.log(`Name: ${user.name}, Email: ${user.email}`);
+        })
+
+        // forEach loop
+        // Users.forEach(user => {
+        //     console.log(`Name: ${user.name}, Email: ${user.email}`);
+        // });
+
+        // for...of loop
+        // for (const user of Users) {
+        //     console.log(`Name: ${user.name}, Email: ${user.email}`);
+        // }
+
+    } catch (error) {
+        console.error("Fatch Users Data Failed !!");
     }
 }
 
-// Call the function with quantity
-placeOrder(4);
+FatchData();
+// Output:
+// Name: Leanne Graham, Email: Sincere@april.biz
+// Name: Ervin Howell, Email: Shanna@melissa.tv
+// Name: Clementine Bauch, Email: Nathan@yesenia.net
+// Name: Patricia Lebsack, Email: Julianne.OConner@kory.org
+// Name: Chelsey Dietrich, Email: Lucio_Hettinger@annie.ca
+// Name: Mrs. Dennis Schulist, Email: Karley_Dach@jasper.info
+// Name: Kurtis Weissnat, Email: Telly.Hoeger@billy.biz
+// Name: Nicholas Runolfsdottir V, Email: Sherwood@rosamond.me
+// Name: Glenna Reichert, Email: Chaim_McDermott@dana.io
+// Name: Clementina DuBuque, Email: Rey.Padberg@karina.biz
