@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Create a webpage with an element having id="message". Use getElementById() to change its text to "Welcome to JavaScript DOM!" -->
+    <h2 id="message">JavaScript Message</h2>
+    <script>
+      document.getElementById("message").innerHTML =
+        "Welcome to JavaScript DOM!";
+    </script>
+
+    <!-- Create a list with multiple items having the same class name. Use getElementsByClassName() to log all their text content. -->
+    <ul>
+      <li class="city">Rajkot</li>
+      <li class="city">Ahemdabad</li>
+      <li class="city">Surat</li>
+      <li class="city">Baroda</li>
+      <li class="city">Amreli</li>
+    </ul>
+    <script>
+      const citys = document.getElementsByClassName("city");
+      for (let i = 0; i < citys.length; i++) {
+        console.log(citys[i].textContent);
+      }
+    </script>
+
+    <!-- Create three <div> elements. Use getElementsByTagName() to set their background color to yellow. -->
+    <div>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, dolor?
+    </div>
+    <div>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia soluta
+      cum debitis reprehenderit, accusantium velit possimus aperiam ab itaque
+      ratione?
+    </div>
+    <div>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt,
+      voluptatem.
+    </div>
+
+    <script>
+      const divs = document.getElementsByTagName("div");
+      for (let i = 0; i < divs.length; i++) {
+        divs[i].style.backgroundColor = "yellow";
+      }
+    </script>
+
+    <!-- Use querySelectorAll() to select all buttons on a page and add a red border to each. -->
+    <button>Button 1</button>
+    <button>Button 2</button>
+    <button>Button 3</button>
+    <script>
+      const btns = document.querySelectorAll("button");
+      btns.forEach((btn) => {
+        btn.style.border = "1px solid red";
+      });
+    </script>
+
+    <!-- Create a <div> and change its content dynamically using JavaScript. -->
+    <div id="textchange">
+      <button onclick="changeText()">Click To Change Text</button>
+    </div>
+
+    <script>
+      function changeText() {
+        // const text = document.getElementById("textchange");
+        // text.textContent = "Content change";
+        document.getElementById("textchange").textContent =
+          "Content Change Success !";
+      }
+    </script>
+
+    <!-- Add a title attribute to an image and change it to "New Image" using setAttribute(). -->
+    <img id="img" src="./Images/javascript1.jpg" alt="Old Image" />
+
+    <script>
+      const img = document.getElementById("img");
+      img.setAttribute("src", "./Images/javascript2.jpg");
+      img.setAttribute("title", "New Image");
+      img.setAttribute("alt", "javascript image 2");
+    </script>
+
+    <!-- Change the background color of all <p> elements to light gray using JavaScript. -->
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae similique
+      consequatur, hic expedita ullam porro velit placeat perspiciatis quibusdam
+      voluptas.
+    </p>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio
+      veritatis reiciendis facere saepe, nesciunt rem facilis vero voluptas,
+      corrupti dolorem exercitationem culpa ea! Sed dolorum accusantium sequi
+      similique impedit ipsum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate,
+      molestias?
+    </p>
+    <script>
+      const p = document.getElementsByTagName("p");
+      for (let i = 0; i < p.length; i++) {
+        p[i].style.backgroundColor = "lightgray";
+      }
+    </script>
+
+    <!-- Add a new <li> element to an existing unordered list using createElement(). -->
+    <ul id="fruits">
+      <li>Mango</li>
+      <li>Orange</li>
+      <li>Banana</li>
+    </ul>
+    <script>
+      const newfruit = document.createElement("li");
+      newfruit.innerHTML = "Apple";
+      document.getElementById("fruits").appendChild(newfruit);
+    </script>
+
+    <!-- Create three <div> elements and remove the second one dynamically using JavaScript. -->
+    <div id="first">First Div Lorem ipsum dolor sit amet.</div>
+    <div id="second">Second Div Lorem ipsum dolor sit amet.</div>
+    <div id="third">Third Div Lorem ipsum dolor sit amet.</div>
+    <script>
+      for (let i = 1; i <=3; i++) {
+        const createDiv = document.createElement("div");
+        createDiv.id = "div"+i;
+        createDiv.textContent = "Div " + i;
+        document.getElementById("third").appendChild(createDiv);
+      }
+
+      const seconddiv = document.getElementById("div2");
+      seconddiv.remove();
+    </script>
+
+    <!--  -->
+  </body>
+</html>
