@@ -124,17 +124,102 @@
     <div id="second">Second Div Lorem ipsum dolor sit amet.</div>
     <div id="third">Third Div Lorem ipsum dolor sit amet.</div>
     <script>
-      for (let i = 1; i <=3; i++) {
+      const maindiv = document.createElement("div");
+      maindiv.id = "main";
+      document.getElementById("third").appendChild(maindiv);
+
+      for (let i = 1; i <= 3; i++) {
         const createDiv = document.createElement("div");
-        createDiv.id = "div"+i;
+        createDiv.id = "div" + i;
         createDiv.textContent = "Div " + i;
-        document.getElementById("third").appendChild(createDiv);
+        document.getElementById("main").appendChild(createDiv);
       }
 
       const seconddiv = document.getElementById("div2");
       seconddiv.remove();
     </script>
 
-    <!--  -->
+    <!-- Add a click event to a button that changes the button's text to "Clicked!". -->
+    <button id="btnclick">Click Here</button>
+    <script>
+      const btnclick = document.getElementById("btnclick");
+
+      btnclick.addEventListener("click", () => {
+        btnclick.textContent = "Clicked!";
+        alert("Button Clicked!");
+      });
+    </script>
+
+    <!-- Attach and then remove an event listener that logs "Hello!" to the console when a paragraph is clicked. -->
+    <p id="palert">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque
+      voluptates perspiciatis quasi eveniet commodi accusantium id nulla
+      voluptate est delectus.
+    </p>
+    <script>
+      const para = document.getElementById("palert");
+      function PAlert() {
+        console.log("Hello!");
+        alert("Hello!");
+
+        setTimeout(() => {
+          para.removeEventListener("click", PAlert);
+          console.log("Removed Event Success !");
+        }, 5000);
+      }
+      para.style.cursor = "pointer";
+      para.style.textDecoration = "underline";
+
+      para.addEventListener("click", PAlert);
+    </script>
+
+    <!-- Modify the to-do list example to add a delete button for each task. -->
+    <ul id="todoList"></ul>
+    <input id="todoInput" type="text" placeholder="Add a task" />
+    <button id="addButton">Add</button>
+
+    <script>
+      const addButton = document.getElementById("addButton");
+      const todoList = document.getElementById("todoList");
+      const todoInput = document.getElementById("todoInput");
+
+      addButton.addEventListener("click", () => {
+        const task = todoInput.value;
+        if (task) {
+          const newItem = document.createElement("li");
+          
+          const taskText = document.createElement("span");
+          taskText.innerText = task;
+
+          // delete button
+          const deletebtn = document.createElement("button");
+          deletebtn.id = "delete-btn";
+          deletebtn.textContent = "Delete";
+
+          deletebtn.addEventListener("click", () => {
+            newItem.remove();
+          })
+
+          // update button
+          const updatebtn = document.createElement("button");
+          updatebtn.id = "update-btn";
+          updatebtn.textContent = "Update";
+
+          updatebtn.addEventListener("click", () => {
+            const updateText = prompt("Update Task:", taskText.textContent);
+            if (updateText !== null && updateText !== "") {
+              taskText.textContent = updateText;
+            }
+          })
+
+          newItem.appendChild(taskText);
+          newItem.appendChild(updatebtn);
+          newItem.appendChild(deletebtn);
+          todoList.appendChild(newItem);
+          
+          todoInput.value = "";
+        }
+      });
+    </script>
   </body>
 </html>
